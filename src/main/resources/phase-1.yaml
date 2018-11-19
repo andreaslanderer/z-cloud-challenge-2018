@@ -1,0 +1,25 @@
+EnvironmentConfigurationMetadata:
+  DateCreated: '1542635331000'
+  DateModified: '1542635331000'
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:eu-west-1::platform/Java 8 running on 64bit Amazon Linux/2.7.7
+OptionSettings:
+  aws:elasticbeanstalk:application:environment:
+    REQUEST_QUEUE: t1-RequestQueue-EELDR6191ESM
+    SECRET_KEY: z5NQ2LekK2Ekur/G3fZrXD004WHxZxZwUl92Gnlh
+    RESPONSE_QUEUE: t1-ResponseQueue-1IF4A4033O7BQ
+    ACCESS_KEY: AKIAIMN4VXPEREPT7TLQ
+    REGION:
+  aws:elasticbeanstalk:environment:
+    EnvironmentType: SingleInstance
+    ServiceRole: aws-elasticbeanstalk-service-role
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  aws:autoscaling:launchconfiguration:
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+  AWSEBAutoScalingLaunchConfiguration.aws:autoscaling:launchconfiguration:
+    EC2KeyName: z-cloud-challenge
+EnvironmentTier:
+  Type: Standard
+  Name: WebServer
+AWSConfigurationTemplateVersion: 1.1.0.0
