@@ -2,7 +2,6 @@ package com.zuehlke.cloudchallenge.messagegransformer.sqs;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.ExecutorFactory;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.amazonaws.services.sqs.AmazonSQSAsyncClientBuilder;
@@ -16,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Collections;
-import java.util.concurrent.Executors;
 
 @Configuration
 public class SqsConfig
@@ -47,7 +45,6 @@ public class SqsConfig
 		return AmazonSQSAsyncClientBuilder.standard()
 			.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey)))
 			.withRegion(Regions.fromName(awsRegion))
-			.withExecutorFactory(Executors::newSingleThreadExecutor)
 			.build();
 	}
 
@@ -66,9 +63,8 @@ public class SqsConfig
 	public SimpleMessageListenerContainerFactory simpleMessageListenerContainerFactory(AmazonSQSAsync sqsAsync)
 	{
 		SimpleMessageListenerContainerFactory factory = new SimpleMessageListenerContainerFactory();
-
+		factory.setMaxNumberOfMessages(1);
 		factory.setAmazonSqs(sqsAsync);
-		factory.setMaxNumberOfMessages(10);
 
 		return factory;
 	}
