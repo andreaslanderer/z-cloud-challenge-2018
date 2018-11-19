@@ -22,13 +22,16 @@ public class SqsConfig
 {
 	private final String awsAccessKey;
 	private final String awsSecretKey;
+	private final String awsRegion;
 
 	public SqsConfig(
 		@Value("${cloud.aws.credentials.accessKey}") String awsAccessKey,
-		@Value("${cloud.aws.credentials.secretKey}") String awsSecretKey)
+		@Value("${cloud.aws.credentials.secretKey}") String awsSecretKey,
+		@Value("${cloud.aws.region}") String awsRegion)
 	{
 		this.awsAccessKey = awsAccessKey;
 		this.awsSecretKey = awsSecretKey;
+		this.awsRegion = awsRegion;
 	}
 
 	@Bean
@@ -42,7 +45,7 @@ public class SqsConfig
 	{
 		return AmazonSQSAsyncClientBuilder.standard()
 			.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey)))
-			.withRegion(Regions.EU_WEST_1)
+			.withRegion(Regions.fromName(awsRegion))
 			.build();
 	}
 
