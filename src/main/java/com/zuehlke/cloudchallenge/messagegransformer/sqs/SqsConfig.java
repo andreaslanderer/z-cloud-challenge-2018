@@ -14,7 +14,6 @@ import org.springframework.cloud.aws.messaging.listener.SimpleMessageListenerCon
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
@@ -63,11 +62,11 @@ public class SqsConfig
 	@Bean
 	public SimpleMessageListenerContainerFactory simpleMessageListenerContainerFactory(AmazonSQSAsync sqsAsync)
 	{
-		SimpleMessageListenerContainerFactory factor = new SimpleMessageListenerContainerFactory();
+		SimpleMessageListenerContainerFactory factory = new SimpleMessageListenerContainerFactory();
+		factory.setMaxNumberOfMessages(10);
+		factory.setAmazonSqs(sqsAsync);
 
-		factor.setAmazonSqs(sqsAsync);
-
-		return factor;
+		return factory;
 	}
 
 	@Bean
