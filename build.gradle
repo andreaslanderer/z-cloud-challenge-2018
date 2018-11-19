@@ -27,5 +27,7 @@ repositories {
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-activemq')
 	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation 'com.amazonaws:amazon-sqs-java-messaging-lib:1.0.4'
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
