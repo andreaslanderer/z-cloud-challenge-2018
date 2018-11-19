@@ -24,10 +24,11 @@ public class JmsConfig
 
 	public JmsConfig(
 		@Value("${cloud.aws.credentials.accessKey}") String awsAccessKey,
-		@Value("${cloud.aws.credentials.secretKey}") String awsSecretKey)
+		@Value("${cloud.aws.credentials.secretKey}") String awsSecretKey,
+		@Value("${cloud.aws.region}") String region)
 	{
 		connectionFactory = SQSConnectionFactory.builder()
-			.withRegion(Region.getRegion(Regions.EU_WEST_1))
+			.withRegion(Region.getRegion(Regions.fromName(region)))
 			.withAWSCredentialsProvider(new AWSStaticCredentialsProvider(
 				new BasicAWSCredentials(awsAccessKey, awsSecretKey)
 			))
