@@ -13,6 +13,8 @@ import org.springframework.cloud.aws.messaging.listener.QueueMessageHandler;
 import org.springframework.cloud.aws.messaging.listener.SimpleMessageListenerContainer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import java.util.Collections;
 
@@ -63,6 +65,7 @@ public class SqsConfig
 	public SimpleMessageListenerContainerFactory simpleMessageListenerContainerFactory(AmazonSQSAsync sqsAsync)
 	{
 		SimpleMessageListenerContainerFactory factory = new SimpleMessageListenerContainerFactory();
+
 		factory.setMaxNumberOfMessages(1);
 		factory.setAmazonSqs(sqsAsync);
 
