@@ -1,5 +1,6 @@
-package com.zuehlke.cloudchallenge.messagegransformer.message;
+package com.zuehlke.cloudchallenge.messagegransformer.sqs;
 
+import com.zuehlke.cloudchallenge.messagegransformer.message.FlightMessage;
 import org.springframework.context.ApplicationEvent;
 
 public class FlightMessageProcessEvent
@@ -7,7 +8,7 @@ public class FlightMessageProcessEvent
 {
 	private final FlightMessage processedMessage;
 
-	public FlightMessageProcessEvent(Object source, FlightMessage processedMessage)
+	FlightMessageProcessEvent(Object source, FlightMessage processedMessage)
 	{
 		super(source);
 

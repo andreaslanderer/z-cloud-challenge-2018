@@ -1,7 +1,6 @@
 package com.zuehlke.cloudchallenge.messagegransformer.sqs;
 
 import com.zuehlke.cloudchallenge.messagegransformer.message.FlightMessage;
-import com.zuehlke.cloudchallenge.messagegransformer.message.FlightMessageProcessEvent;
 import com.zuehlke.cloudchallenge.messagegransformer.message.MessageTransformer;
 import com.zuehlke.cloudchallenge.messagegransformer.message.ProcessedFlightMessage;
 import org.springframework.beans.factory.annotation.Autowired;

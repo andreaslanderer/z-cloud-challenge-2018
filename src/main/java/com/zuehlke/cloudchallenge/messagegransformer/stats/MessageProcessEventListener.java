@@ -1,6 +1,6 @@
 package com.zuehlke.cloudchallenge.messagegransformer.stats;
 
-import com.zuehlke.cloudchallenge.messagegransformer.message.FlightMessageProcessEvent;
+import com.zuehlke.cloudchallenge.messagegransformer.sqs.FlightMessageProcessEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;

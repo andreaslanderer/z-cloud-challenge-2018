@@ -17,7 +17,7 @@ public class StatsController
 	}
 
 	@GetMapping(path = "/counters/{airport}", produces = "application/json")
-	public StatsResponse greeting(@PathVariable("airport") String airport)
+	public StatsResponse counts(@PathVariable("airport") String airport)
 	{
 		long messageCount = statisticsStore.getMessageCountForAirport(airport);
 
