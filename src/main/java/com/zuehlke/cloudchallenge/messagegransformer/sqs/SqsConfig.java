@@ -65,13 +65,12 @@ public class SqsConfig
 	public SimpleMessageListenerContainerFactory simpleMessageListenerContainerFactory(AmazonSQSAsync sqsAsync)
 	{
 		SimpleMessageListenerContainerFactory factory = new SimpleMessageListenerContainerFactory();
+		factory.setMaxNumberOfMessages(10);
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-
-		executor.setCorePoolSize(2);
+		executor.setCorePoolSize(5);
 		executor.setMaxPoolSize(16);
-		executor.setQueueCapacity(1000);
+		executor.setQueueCapacity(0);
 		executor.afterPropertiesSet();
-
 		factory.setAmazonSqs(sqsAsync);
 		factory.setTaskExecutor(executor);
 

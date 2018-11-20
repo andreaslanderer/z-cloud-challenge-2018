@@ -38,12 +38,15 @@ public class FlightMessageProcessor
 	@SqsListener("${queue.incomingFlightMessages}")
 	public void receiveMessage(@Payload FlightMessage incomingMessage)
 	{
-		System.out.println(new SimpleDateFormat().format(new Date()) + ": Receive incoming message.");
+		long start = System.currentTimeMillis();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		System.out.println(format.format(new Date()) + ": Receive incoming message; " + Thread.currentThread().getName() + "," + Thread.currentThread().getId());
 		ProcessedFlightMessage processedFlightMessage = messageTransformer.transformMessage(incomingMessage);
 		FlightMessageProcessEvent event = new FlightMessageProcessEvent(this, incomingMessage);
 
 		messagingTemplate.convertAndSend(outputQueueName, processedFlightMessage);
 		eventPublisher.publishEvent(event);
-		System.out.println(new SimpleDateFormat().format(new Date()) + ": Sent outgoing message.");
+		long end = System.currentTimeMillis();
+		System.out.println(format.format(new Date()) + ": Sent outgoing message.; " + Thread.currentThread().getName() + " " + (end-start) + " ms.");
 	}
 }
