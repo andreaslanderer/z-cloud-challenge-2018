@@ -11,6 +11,10 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+import javax.swing.text.DateFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Component
 public class FlightMessageProcessor
 {
@@ -34,10 +38,12 @@ public class FlightMessageProcessor
 	@SqsListener("${queue.incomingFlightMessages}")
 	public void receiveMessage(@Payload FlightMessage incomingMessage)
 	{
+		System.out.println(new SimpleDateFormat().format(new Date()) + ": Receive incoming message.");
 		ProcessedFlightMessage processedFlightMessage = messageTransformer.transformMessage(incomingMessage);
 		FlightMessageProcessEvent event = new FlightMessageProcessEvent(this, incomingMessage);
 
 		messagingTemplate.convertAndSend(outputQueueName, processedFlightMessage);
 		eventPublisher.publishEvent(event);
+		System.out.println(new SimpleDateFormat().format(new Date()) + ": Sent outgoing message.");
 	}
 }
