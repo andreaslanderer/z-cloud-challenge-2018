@@ -15,11 +15,11 @@ import javax.jms.ConnectionFactory;
 
 @SpringBootApplication
 @EnableJms
-public class MessagegransformerApplication
+public class MessageTransformerApplication
 {
 	public static void main(String[] args)
 	{
-		SpringApplication.run(MessagegransformerApplication.class, args);
+		SpringApplication.run(MessageTransformerApplication.class, args);
 	}
 
 	@Bean
