@@ -6,4 +6,4 @@ phases:
         - ./gradlew clean assemble
 artifacts:
     files:
-    - 'build/libs/*'
+    - 'build/libs/application.jar'

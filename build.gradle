@@ -29,3 +29,7 @@ dependencies {
 	implementation('org.springframework.cloud:spring-cloud-aws-messaging:2.0.1.RELEASE')
 	implementation('com.amazonaws:aws-java-sdk-dynamodb:1.11.452')
 }
+
+bootJar {
+	archiveName 'application.jar'
+}
